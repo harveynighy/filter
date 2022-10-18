@@ -1,0 +1,25 @@
+.blog {
+	margin-bottom: 4rem;
+	&__archive {
+		max-width: 20rem;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		place-items: center;
+		gap: 2rem;
+		&__card {
+			height: 100%;
+			background: #f2f2f2 ;
+			max-width: 12rem;
+			border: 1px solid black;
+			text-align: center;
+			&--thumbnail {
+				img {
+					display: block;
+					width: 100%;
+                    height: auto;
+				}
+			}
+		}
+	}
+}
