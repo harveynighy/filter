@@ -6,20 +6,14 @@ the_content();
 ?>
 
 
+
 <?php
+
 $terms = get_terms(array(
     'taxonomy' => 'language',
     'hide_empty' => false,
     'posts_per_page' => -1,
 )); ?>
-
-
-
-<?php foreach ($terms as $term) :
-    if ($term->parent === 0) : ?>
-        <a href="<?= home_url() . '/' . $term->taxonomy . '/' . $term->slug; ?>"><?= $term->name; ?></a>
-<?php endif;
-endforeach; ?>
 
 <?php $args = array(
     'post_type' => 'blog',
@@ -27,7 +21,6 @@ endforeach; ?>
 );
 
 $query = new WP_Query($args);
-// var_dump($query);
 
 if ($query->have_posts()) {
     echo "<section class=\"blog\">";

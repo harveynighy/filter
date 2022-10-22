@@ -2,7 +2,7 @@
 
 <?php wp_footer(); ?>
 
-<!-- <footer class="footer">
+<footer class="footer">
     <div class="footer__wrapper">
         <div class="footer__copyright">
             <div class="footer__copyright--logo">
@@ -11,7 +11,7 @@
         </div>
         <div class="footer__menu"></div>
     </div>
-</footer> -->
+</footer>
 </body>
 
 </html>
