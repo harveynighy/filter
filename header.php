@@ -1,4 +1,10 @@
-<?php if (!defined('ABSPATH')) exit; ?>
+<?php if (!defined('ABSPATH')) exit;
+require_once('inc/Class/Filter.php');
+
+use NighyDev\Filter;
+
+$filter = new Filter('Product');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -22,11 +28,9 @@
         <div class="header__wrapper">
             <div class="header__wrapper__logo"><a href="/">Dev HQ</a></div>
             <?= tw_get_menu('main', 'header__wrapper__nav'); ?>
-
-            <!-- <div id="mainBurger" class="header__wrapper__burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div> -->
         </div>
+        <?php
+        var_dump($filter);
+        var_dump($filter->setArgs());
+        ?>
     </header>

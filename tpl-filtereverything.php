@@ -6,15 +6,8 @@ get_header();
 <h1>Filter Everything</h1>
 <?php
 $terms = (get_terms([
-    'taxonomy' => 'language',
+    'taxonomy' => 'type',
     'hide_empty' => false
-]));
-
-$brands_terms = (get_terms([
-    'taxonomy' => 'brands',
-    'hide_empty' => true,
-    'order' => 'ASC',
-    'get' => 'all'
 ]));
 
 global $_GET;
@@ -23,11 +16,11 @@ global $_GET;
 <form action="" method="GET">
 
     <!-- First Select Option -->
-    <select name="language[]">
+    <select name="type[]">
         <option value="">All</option>
         <?php foreach ($terms as $term) : ?>
 
-            <option <?php if ($_GET["language"][0] == $term->slug) {
+            <option <?php if ($_GET["type"][0] == $term->slug) {
                         echo "selected";
                     } else {
                         echo "";
@@ -38,40 +31,21 @@ global $_GET;
     </select>
 
     <!-- Submit Button -->
-    <select name="brands[]" id="brand">
-        <option value="">All</option>
-        <?php foreach ($brands_terms as $term) : ?>
-            <option <?php if ($_GET["brands"][0] == $term->slug) {
-                        echo "selected";
-                    } else {
-                        echo "";
-                    } ?> <?php echo $result = $_GET["brand"][0] == $term->slug; ?> value="<?= $term->slug ?>"><?= $term->name; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <!-- Submit Button -->
     <button type="submit">Submit</button>
 </form>
 
 <?php
-
 $args = [
-    'post_type' => 'blog',
+    'post_type' => 'product',
     'tax_query' => array(
         'relation' => 'AND',
     ),
 ];
 
-// Push the arguments of Machines Select Form to WP_Query $args
-if (!empty($_GET["language"][0])) {
-    foreach ($_GET["language"] as $language) {
-        array_push($args['tax_query'], query_to_append("language", $language));
-    }
-}
-
-// Push the arguments of Brands Select Form to WP_Query $args
-if (!empty($_GET["brands"][0])) {
-    foreach ($_GET["brands"] as $brand) {
-        array_push($args['tax_query'], query_to_append("brands", $brand));
+// Push the arguments of Types Select Form to WP_Query $args
+if (!empty($_GET["type"][0])) {
+    foreach ($_GET["type"] as $type) {
+        array_push($args['tax_query'], query_to_append("type", $type));
     }
 }
 
@@ -108,4 +82,5 @@ if ($the_query->have_posts()) {
 }
 /* Restore original Post Data */
 wp_reset_postdata();
-get_footer(); ?>
+get_footer();
+?>
